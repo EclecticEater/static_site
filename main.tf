@@ -1,5 +1,3 @@
-# We strongly recommend using the required_providers block to set the
-# Azure Provider source and version being used
 terraform {
   required_providers {
     azurerm = {
@@ -21,8 +19,7 @@ resource "azurerm_resource_group" "tfresourcegroup" {
 # Create the static website and Storage Account
 
 # Deploying from github actions to a static site is not a official function of Azure
-# To potentially perform this deployment to the static site, I would need to import the Github provider and modify the workflow for Github actions with a SP and the name of the storage account.
-# Since I want to avoid breaking what is already working, I'd rather not try and attempt to modify my github workflow (also it'd take a lot more time to do)
+# The Github provider does not have the ability to configure a workflow (from what I can tell), so this terraform will require human intervention to be completed
 
 resource "azurerm_storage_account" "tfstorageacc" {
   name                     = "tfstorageacc"
@@ -76,7 +73,7 @@ resource "azurerm_cosmosdb_table" "cosmosdb_table" {
 # Create the Function App for connecting to the CosmosdB Table.
 
 # From this article https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service_source_control
-# As of writing this configuration file source control from a GitHub repository for an Azure Function is not supported.
+# As of writing this configuration file source control from a GitHub repository for an Azure Function is not supported. Also see comment above about github provider
 # The terraform for the Azure function is best-effort given this constraint along with being unable to set the needed environment variable
 
 resource "azurerm_service_plan" "API_ASP" {
