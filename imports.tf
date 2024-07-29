@@ -1,6 +1,7 @@
 # This will likely work as an import file to the main config file if I rename some of my resources, 
-# but the purpose of the main file was to remake the resources with different names and a different RG to prevent overwriting my project and require debugging
-# The Azure provider doesn't support deployment from github. I might be able to by using the github provider and modifying the workflow.yml file, but it again will impact my working project if that file is modified
+# but the original purpose of the main file was to remake the resources with different names and a different RG to prevent overwriting my project and require debugging
+# The Azure provider doesn't support deployment from github and the github provider doesn't support workflow creation. So either you have to import existing resources into terraform, or perform human interaction to complete the deployment.
+
 
 terraform {
   required_providers {
